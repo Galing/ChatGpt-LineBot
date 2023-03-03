@@ -31,7 +31,7 @@ class ChatGPT:
     def add_image(self, text):
         response = openai.Image.create(
             prompt = text,
-            n=1,
+            n=3,
             size="1024x1024"
         )
         return response['data'][0]['url']
