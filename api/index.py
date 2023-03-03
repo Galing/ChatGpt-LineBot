@@ -4,6 +4,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 from api.chatgpt import ChatGPT
 
+import re
 import os
 
 line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
@@ -54,7 +55,7 @@ def handle_message(event):
             TextSendMessage(text="感謝您的使用，若需要我的服務，請跟我說 「啟動」 謝謝~"))
         return
     
-    if os.match("給我圖片",event.message.text):
+    if re.match("給我圖片",event.message.text):
         response = chatgpt.Image.creat(
             prompt=event.message.text.replace("給我圖片",""),
             n=1,
