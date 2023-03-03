@@ -56,12 +56,7 @@ def handle_message(event):
         return
     
     if re.match("給我圖片",event.message.text):
-        response = ChatGPT.openai.Image.creat(
-            prompt=event.message.text.replace("給我圖片",""),
-            n=1,
-            size="1024x1024"
-        )
-        image_url = response['data'][0]['url']
+        image_url = chatgpt.add_msg(f"Human:{event.message.text.replace("給我圖片","")}?\n")
         line_bot_api.reply_message(
             event.reply_token,
             ImageSendMessage(original_content_url=image_url,
