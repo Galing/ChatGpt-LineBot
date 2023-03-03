@@ -60,7 +60,8 @@ def handle_message(event):
         image_url = chatgpt.add_image(event.message.text.replace("給我圖片",""))
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=image_url))
+            ImageSendMessage(original_content_url=image_url,
+                            previe_image_url=image_url))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text=event.message.text))
         
