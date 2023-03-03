@@ -56,8 +56,8 @@ def handle_message(event):
             TextSendMessage(text="感謝您的使用，若需要我的服務，請跟我說 「啟動」 謝謝~"))
         return
     
-    if re.match("給我圖片",event.message.text):
-        image_url = chatgpt.add_image(event.message.text.replace("給我圖片",""))
+    if re.match("給我圖片:",event.message.text):
+        image_url = chatgpt.add_image(event.message.text.replace("給我圖片:",""))
 
         line_bot_api.reply_message(
             event.reply_token,ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
