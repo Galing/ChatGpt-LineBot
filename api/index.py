@@ -65,7 +65,8 @@ def handle_message(event):
         
     if working_status:
         if re.match("請問AI大大:",event.message.text):
-            chatgpt.add_msg(f"Human:{event.message.text.replace("請問AI大大:","")}?\n")
+            msg = event.message.text.replace("請問AI大大:","")
+            chatgpt.add_msg(f"Human:{msg}?\n")
             reply_msg = chatgpt.get_response().replace("AI:", "", 1)
             chatgpt.add_msg(f"AI:{reply_msg}\n")
             line_bot_api.reply_message(
