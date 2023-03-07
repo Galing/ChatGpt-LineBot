@@ -61,7 +61,7 @@ def handle_message(event):
         i = 0
         while(i<2):		        
 	        image_url = response['data'][i]['url']	
-	        line_bot_api.reply_message(event.reply_token,ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
+	        line_bot_api.push_message('1657579808', ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
 	        i += 1
     
     if working_status:
