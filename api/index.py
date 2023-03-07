@@ -58,11 +58,9 @@ def handle_message(event):
     
     if re.match("給我圖片:",event.message.text):
         response = chatgpt.add_image(event.message.text.replace("給我圖片:",""))
-        i = 0
-        while(i<2):		        
-	        image_url = response['data'][i]['url']	
-	        line_bot_api.push_message('1657579808', ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
-	        i += 1
+        image_url = response['data'][0]['url']
+        line_bot_api.reply_message(
+                event.reply_token,ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
     
     if working_status:
         if re.match("請問AI大大:",event.message.text):
