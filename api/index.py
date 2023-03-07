@@ -58,10 +58,16 @@ def handle_message(event):
     
     if re.match("給我圖片:",event.message.text):
         response = chatgpt.add_image(event.message.text.replace("給我圖片:",""))
-        for number in range(3):
-            image_url = response['data'][number]['url']
+        
+            image_url_0 = response['data'][0]['url']
+            image_url_1 = response['data'][1]['url']
+            image_url_2 = response['data'][2]['url']
             line_bot_api.reply_message(
-                event.reply_token,ImageSendMessage(original_content_url=image_url, preview_image_url=image_url))
+                event.reply_token,ImageSendMessage(original_content_url=image_url_0, preview_image_url=image_url_0))
+            line_bot_api.reply_message(
+                event.reply_token,ImageSendMessage(original_content_url=image_url_1, preview_image_url=image_url_1))
+            line_bot_api.reply_message(
+                event.reply_token,ImageSendMessage(original_content_url=image_url_2, preview_image_url=image_url_2))
     
         
     if working_status:
